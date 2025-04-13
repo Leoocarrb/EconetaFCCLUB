@@ -18,7 +18,6 @@
             width: 25%;
             padding: 20px;
             background-color: #1a1a1a;
-            position: relative;
         }
 
         .menu img.logo {
@@ -38,10 +37,6 @@
 
         .menu ul li {
             margin: 10px 0;
-        }
-
-        /* Menú desplegable */
-        .menu ul li.submenu {
             cursor: pointer;
         }
 
@@ -65,7 +60,7 @@
             color: #ffd700;
         }
 
-        /* Zona de la imagen rotativa */
+        /* Zona de la imagen */
         .image-container {
             flex-grow: 1;
             display: flex;
@@ -78,13 +73,13 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            animation: fadeEffect 5s infinite alternate;
         }
 
-        @keyframes fadeEffect {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+        /* Zona de texto */
+        .info-container {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
         }
     </style>
 </head>
@@ -94,31 +89,71 @@
         <img src="logo.png" alt="Logo Econeta FC" class="logo">
         <h2>Econeta FC</h2>
         <ul>
+            <li><a href="#" onclick="showMatchInfo('debut', 'Debut')">Debut</a></li>
             <li class="submenu">Sociales
                 <ul>
-                    <li><a href="#sociales2">Sociales 2</a></li>
-                    <li><a href="#sociales3">Sociales 3 (Abandonó)</a></li>
+                    <li><a href="#" onclick="showMatchInfo('sociales1', 'Sociales 1')">Sociales 1</a></li>
+                    <li><a href="#" onclick="showMatchInfo('sociales2', 'Sociales 2')">Sociales 2</a></li>
+                    <li><a href="#" onclick="showMatchInfo('sociales3', 'Sociales 3')">Sociales 3</a></li>
                 </ul>
             </li>
-            <li><a href="#charros">Charros</a></li>
-            <li><a href="#4tonaturales">4to Naturales</a></li>
+            <li><a href="#" onclick="showMatchInfo('septima', 'Séptima')">Séptima</a></li>
+            <li><a href="#" onclick="showMatchInfo('4tonaturales', '4to Naturales')">4to Naturales</a></li>
+            <li><a href="#" onclick="showMatchInfo('charros', 'Charros')">Charros</a></li>
         </ul>
     </div>
 
     <!-- Zona de la Imagen -->
     <div class="image-container">
-        <img src="player1.png" alt="Jugador 1" id="rotatingImage">
+        <img src="player1.png" alt="Partido" id="matchImage">
+    </div>
+
+    <!-- Zona de Texto -->
+    <div class="info-container">
+        <h2 id="matchTitle">Selecciona un partido</h2>
+        <p id="matchLore">Aquí se mostrará la información del partido seleccionado.</p>
     </div>
 
     <script>
-        // Rotación de imágenes
-        const images = ["player1.png", "player2.png"];
-        let currentIndex = 0;
+        // Información de los partidos
+        const matches = {
+            debut: {
+                image: "debut.png",
+                lore: "Un emocionante debut donde Econeta FC mostró su espíritu luchador, terminando en un empate 4-4."
+            },
+            sociales1: {
+                image: "sociales1.png",
+                lore: "Un enfrentamiento difícil en Sociales 1, donde el equipo dio todo pero cayó 5-3."
+            },
+            sociales2: {
+                image: "sociales2.png",
+                lore: "Un partido intenso en Sociales 2, con momentos brillantes y jugadas estratégicas."
+            },
+            sociales3: {
+                image: "sociales3.png",
+                lore: "Sociales 3 fue un duelo complicado, pero dejó al equipo con lecciones valiosas para el futuro."
+            },
+            septima: {
+                image: "septima.png",
+                lore: "Un gran triunfo contra Séptima, donde la ofensiva de Econeta FC brilló con un marcador de 8-6."
+            },
+            "4tonaturales": {
+                image: "4tonaturales.png",
+                lore: "Un partido espectacular contra 4to Naturales, logrando una victoria épica de 12-10."
+            },
+            charros: {
+                image: "charros.png",
+                lore: "Una aplastante victoria contra Charros con un marcador asombroso de 22-5. ¡Qué noche para recordar!"
+            }
+        };
 
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            document.getElementById("rotatingImage").src = images[currentIndex];
-        }, 5000); // Cambia cada 5 segundos
+        // Mostrar información del partido
+        function showMatchInfo(matchKey, matchTitle) {
+            const match = matches[matchKey];
+            document.getElementById("matchImage").src = match.image || "player1.png";
+            document.getElementById("matchTitle").textContent = matchTitle;
+            document.getElementById("matchLore").textContent = match.lore || "Información no disponible.";
+        }
     </script>
 </body>
 </html>
