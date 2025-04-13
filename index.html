@@ -9,7 +9,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             display: flex;
-            background-color: #000; /* Fondo negro para disimular */
+            background-color: #000; /* Fondo negro */
             color: #fff;
         }
 
@@ -38,6 +38,21 @@
 
         .menu ul li {
             margin: 10px 0;
+        }
+
+        /* Menú desplegable */
+        .menu ul li.submenu {
+            cursor: pointer;
+        }
+
+        .menu ul li ul {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .menu ul li:hover > ul {
+            display: block;
         }
 
         .menu ul li a {
@@ -71,23 +86,20 @@
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
-
-        /* Lore de cada partido */
-        .lore {
-            font-size: 14px;
-            margin-top: 5px;
-            color: #aaa;
-        }
     </style>
 </head>
 <body>
     <!-- Menú -->
     <div class="menu">
-        <img src="logo.png" alt="Logo Econeta FC" class="logo">
+        <img src="images/logo.png" alt="Logo Econeta FC" class="logo">
         <h2>Econeta FC</h2>
         <ul>
-            <li><a href="#sociales2">Sociales 2</a></li>
-            <li><a href="#sociales3">Sociales 3 (Abandonó)</a></li>
+            <li class="submenu">Sociales
+                <ul>
+                    <li><a href="#sociales2">Sociales 2</a></li>
+                    <li><a href="#sociales3">Sociales 3 (Abandonó)</a></li>
+                </ul>
+            </li>
             <li><a href="#charros">Charros</a></li>
             <li><a href="#4tonaturales">4to Naturales</a></li>
         </ul>
@@ -95,12 +107,12 @@
 
     <!-- Zona de la Imagen -->
     <div class="image-container">
-        <img src="player1.png" alt="Jugador 1" id="rotatingImage">
+        <img src="images/player1.png" alt="Jugador 1" id="rotatingImage">
     </div>
 
     <script>
         // Rotación de imágenes
-        const images = ["player1.png", "player2.png"];
+        const images = ["images/player1.png", "images/player2.png"];
         let currentIndex = 0;
 
         setInterval(() => {
