@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "title": "Sociales 2",
+      "id": "sociales2",
+      "score": "7-1",
+      "lore": "En este encuentro Econeta FC dominó desde el inicio. Los pelotazos al arco rival eran constantes, y la defensa logró neutralizar al equipo contrario, asegurando una victoria contundente."
+    },
+    {
+      "title": "Sociales 3 (Abandonó)",
+      "id": "sociales3",
+      "score": "11-4",
+      "lore": "Fue un partido con mucha acción y goles. Sin embargo, el equipo contrario no pudo mantener la intensidad y terminó abandonando, dejando a Econeta FC con una victoria más que merecida."
+    },
+    {
+      "title": "Charros",
+      "id": "charros",
+      "score": "22-5",
+      "lore": "Un partido espectacular donde Econeta FC mostró su mejor nivel. Los goles caían uno tras otro en una exhibición de técnica y trabajo en equipo que dejó sin oportunidades al equipo rival."
+    },
+    {
+      "title": "4to Naturales",
+      "id": "4tonaturales",
+      "score": "Resultado pendiente",
+      "lore": "En este encuentro, ambos equipos lucharon con intensidad. Econeta FC logró mantener la ventaja gracias a su defensa sólida y ataques rápidos, asegurando el resultado."
+    }
+  ]
+}

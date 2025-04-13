@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econeta FC</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #000; /* Fondo negro para disimular */
+            color: #fff;
+        }
+
+        /* Menú */
+        .menu {
+            width: 25%;
+            padding: 20px;
+            background-color: #1a1a1a;
+            position: relative;
+        }
+
+        .menu img.logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .menu h2 {
+            color: #ffd700; /* Dorado */
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            margin: 10px 0;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* Zona de la imagen rotativa */
+        .image-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-container img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            animation: fadeEffect 5s infinite alternate;
+        }
+
+        @keyframes fadeEffect {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Lore de cada partido */
+        .lore {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú -->
+    <div class="menu">
+        <img src="logo.png" alt="Logo Econeta FC" class="logo">
+        <h2>Econeta FC</h2>
+        <ul>
+            <li><a href="#sociales2">Sociales 2</a></li>
+            <li><a href="#sociales3">Sociales 3 (Abandonó)</a></li>
+            <li><a href="#charros">Charros</a></li>
+            <li><a href="#4tonaturales">4to Naturales</a></li>
+        </ul>
+    </div>
+
+    <!-- Zona de la Imagen -->
+    <div class="image-container">
+        <img src="player1.png" alt="Jugador 1" id="rotatingImage">
+    </div>
+
+    <script>
+        // Rotación de imágenes
+        const images = ["player1.png", "player2.png"];
+        let currentIndex = 0;
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById("rotatingImage").src = images[currentIndex];
+        }, 5000); // Cambia cada 5 segundos
+    </script>
+</body>
+</html>
