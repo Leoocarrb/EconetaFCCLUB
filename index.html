@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Econeta FC</title>
     <style>
+        /* General */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             display: flex;
-            background-color: #000; /* Fondo negro */
+            flex-direction: column;
+            background: url('fondoverde.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
         }
 
-        /* Menú */
+        /* Menú lateral */
         .menu {
             width: 25%;
             padding: 20px;
-            background-color: #1a1a1a;
-        }
-
-        .menu img.logo {
-            width: 100px;
-            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .menu h2 {
@@ -40,16 +38,6 @@
             cursor: pointer;
         }
 
-        .menu ul li ul {
-            display: none;
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .menu ul li:hover > ul {
-            display: block;
-        }
-
         .menu ul li a {
             color: #fff;
             text-decoration: none;
@@ -60,99 +48,123 @@
             color: #ffd700;
         }
 
-        /* Zona de la imagen */
-        .image-container {
+        .goat-section {
+            margin-top: 10px;
+            display: none;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* Zona de contenido */
+        .content {
             flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .image-container img {
-            max-width: 90%;
-            max-height: 90%;
+            width: 100%;
+            height: auto;
+            max-height: 500px; /* Para limitar el tamaño en pantallas grandes */
             object-fit: contain;
         }
 
-        /* Zona de texto */
-        .info-container {
-            width: 100%;
+        .stats-section {
+            margin-top: 20px;
+        }
+
+        .stats-section h3 {
+            color: #ffd700;
+        }
+
+        .stats-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-section ul li {
+            margin: 5px 0;
+        }
+
+        /* Frase dinámica */
+        .footer {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .menu {
+                width: 100%;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .image-container img {
+                max-height: 300px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Menú -->
+    <!-- Menú lateral -->
     <div class="menu">
-        <img src="logo.png" alt="Logo Econeta FC" class="logo">
         <h2>Econeta FC</h2>
         <ul>
-            <li><a href="#" onclick="showMatchInfo('debut', 'Debut')">Debut</a></li>
-            <li class="submenu">Sociales
-                <ul>
-                    <li><a href="#" onclick="showMatchInfo('sociales1', 'Sociales 1')">Sociales 1</a></li>
-                    <li><a href="#" onclick="showMatchInfo('sociales2', 'Sociales 2')">Sociales 2</a></li>
-                    <li><a href="#" onclick="showMatchInfo('sociales3', 'Sociales 3')">Sociales 3</a></li>
-                </ul>
+            <li><a href="#partidos">Partidos</a></li>
+            <li><a href="#estadisticas">Estadísticas</a></li>
+            <li>
+                <a href="#goat" onclick="showGoat()">GOAT</a>
+                <div class="goat-section" id="goat-section">Leon Carabajal</div>
             </li>
-            <li><a href="#" onclick="showMatchInfo('septima', 'Séptima')">Séptima</a></li>
-            <li><a href="#" onclick="showMatchInfo('4tonaturales', '4to Naturales')">4to Naturales</a></li>
-            <li><a href="#" onclick="showMatchInfo('charros', 'Charros')">Charros</a></li>
         </ul>
     </div>
 
-    <!-- Zona de la Imagen -->
-    <div class="image-container">
-        <img src="player1.png" alt="Partido" id="matchImage">
+    <!-- Contenido principal -->
+    <div class="content">
+        <!-- Zona de imagen -->
+        <div class="image-container">
+            <img src="partido1.jpg" alt="Partido destacado">
+        </div>
+
+        <!-- Zona de estadísticas -->
+        <div class="stats-section" id="estadisticas">
+            <h3>Goleadores</h3>
+            <ul>
+                <li>1° Román Benina</li>
+                <li>2° Thaiel Pignanessi</li>
+                <li>3° Valentín Ares</li>
+            </ul>
+
+            <h3>Asistencias</h3>
+            <ul>
+                <li>1° Thaiel Pignanessi</li>
+                <li>2° Román Benina</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Zona de Texto -->
-    <div class="info-container">
-        <h2 id="matchTitle">Selecciona un partido</h2>
-        <p id="matchLore">Aquí se mostrará la información del partido seleccionado.</p>
-    </div>
+    <!-- Frase dinámica -->
+    <div class="footer" id="dynamic-phrase"></div>
 
     <script>
-        // Información de los partidos
-        const matches = {
-            debut: {
-                image: "debut.png",
-                lore: "Un emocionante debut donde Econeta FC mostró su espíritu luchador, terminando en un empate 4-4."
-            },
-            sociales1: {
-                image: "sociales1.png",
-                lore: "Un enfrentamiento difícil en Sociales 1, donde el equipo dio todo pero cayó 5-3."
-            },
-            sociales2: {
-                image: "sociales2.png",
-                lore: "Un partido intenso en Sociales 2, con momentos brillantes y jugadas estratégicas."
-            },
-            sociales3: {
-                image: "sociales3.png",
-                lore: "Sociales 3 fue un duelo complicado, pero dejó al equipo con lecciones valiosas para el futuro."
-            },
-            septima: {
-                image: "septima.png",
-                lore: "Un gran triunfo contra Séptima, donde la ofensiva de Econeta FC brilló con un marcador de 8-6."
-            },
-            "4tonaturales": {
-                image: "4tonaturales.png",
-                lore: "Un partido espectacular contra 4to Naturales, logrando una victoria épica de 12-10."
-            },
-            charros: {
-                image: "charros.png",
-                lore: "Una aplastante victoria contra Charros con un marcador asombroso de 22-5. ¡Qué noche para recordar!"
-            }
-        };
+        // Frase dinámica
+        const phrases = [
+            "𝓟𝓸𝓭𝓻𝓪𝓷 𝓲𝓶𝓲𝓽𝓪𝓻𝓷𝓸𝓼 𝓹𝓮𝓻𝓸 𝓳𝓪𝓶𝓪𝓼 𝓲𝓰𝓾𝓪𝓵𝓪𝓻𝓷𝓸𝓼",
+            "𝓔𝓬𝓸𝓷𝓮𝓽𝓪, 𝓮𝓵 𝓮𝓺𝓾𝓲𝓹𝓸 𝓺𝓾𝓮 𝓬𝓸𝓷𝓮𝓬𝓽𝓪"
+        ];
+        const phraseElement = document.getElementById("dynamic-phrase");
+        phraseElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
 
-        // Mostrar información del partido
-        function showMatchInfo(matchKey, matchTitle) {
-            const match = matches[matchKey];
-            document.getElementById("matchImage").src = match.image || "player1.png";
-            document.getElementById("matchTitle").textContent = matchTitle;
-            document.getElementById("matchLore").textContent = match.lore || "Información no disponible.";
+        // Mostrar sección GOAT
+        function showGoat() {
+            const goatSection = document.getElementById("goat-section");
+            goatSection.style.display = "block";
         }
     </script>
 </body>
